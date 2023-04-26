@@ -1,0 +1,70 @@
+﻿@model Model.Departement
+
+@{
+    ViewBag.Title = @Html.DisplayFor(model => model.dep_name);
+}
+
+<h2>@Html.DisplayFor(model => model.dep_name)</h2>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.region_name)</h4>
+    
+</div>
+@if (Model.Medecins.Count != 0)
+{
+
+
+    <table class="table">
+        <tr>
+
+            <th>
+                @Html.DisplayName("Nom")
+            </th>
+            <th>
+                @Html.DisplayName("Prénom")
+            </th>
+            <th>
+                @Html.DisplayName("Adresse")
+            </th>
+            <th>
+                @Html.DisplayName("Téléphone")
+            </th>
+            <th>
+                @Html.DisplayName("Spécialité")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Medecins)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Departement.dep_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prenom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Adresse)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.specialite)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telephone)
+                </td>
+            </tr>
+            }
+        </table>
+}
+            else
+            {
+                <h3>Malheuresement, aucun médecin n'est présent dans cette région !</h3>
+            }
+<p>
+    @Html.ActionLink("Modifier", "Edit", new { id = Model.num_dep }) |
+    @Html.ActionLink("Revenir à la liste", "Index")
+</p>
